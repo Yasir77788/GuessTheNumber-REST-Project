@@ -1,0 +1,29 @@
+DROP DATABASE IF EXISTS GuessTheNumberDB;
+CREATE DATABASE GuessTheNumberDB;
+USE GuessTheNumberDB;
+
+CREATE TABLE game (
+    game_id INT PRIMARY KEY AUTO_INCREMENT,
+    answer char(4),
+    game_finished BOOLEAN DEFAULT false
+    );
+    
+INSERT INTO game(game_id, answer, game_finished) VALUES
+	(1, "1234", true),
+	(2, "5678", true);
+	
+
+CREATE TABLE round (
+    round_id INT PRIMARY KEY AUTO_INCREMENT,
+    game_id INT NOT NULL,
+    guess_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    guess CHAR(4),
+    result CHAR(7),
+    FOREIGN KEY fk_game_id (game_id) REFERENCES game(game_id)
+    );
+    
+    INSERT INTO round (round_id, game_id, guess_time, guess, result) VALUES 
+    (1, 1, "2022-08-17 03:29:01", "1857", "e:1:p:0"),
+    (2, 1, "2022-08-17 03:40:03", "4231", "e2::p:1");
+    
+    
